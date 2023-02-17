@@ -1,6 +1,6 @@
-from pytube import YouTube
 import sys
 from pathlib import Path
+from pytube import YouTube
 
 def main():
     link = input("Youtube Video URL: ")
