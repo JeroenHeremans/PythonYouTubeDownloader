@@ -1,6 +1,6 @@
 from pytube import YouTube
 import sys
-
+from pathlib import Path
 
 def main():
     link = input("Youtube Video URL: ")
@@ -10,7 +10,7 @@ def main():
 
     print("Download in progress")
 
-    output_path = "C:\\Users\\Jeroen\\Downloads"
+    output_path = str(Path.home() / "Downloads")
     filename = f"{title}.mp4"
     youtubeDownloader.streams.filter(progressive=True, file_extension="mp4").get_highest_resolution().download(output_path=output_path, filename=filename)
 
@@ -25,6 +25,7 @@ def progress_function(chunk, file_handle, bytes_remaining):
     status = '█' * progress + '-' * (50 - progress)
     sys.stdout.write(' ↳ |{bar}| {percent}%\r'.format(bar=status, percent=percent))
     sys.stdout.flush()
+
 
 if __name__=="__main__":
     main()
