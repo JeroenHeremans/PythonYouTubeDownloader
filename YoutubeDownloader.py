@@ -5,16 +5,15 @@ from pytube import YouTube
 def main():
     link = input("Youtube Video URL: ")
     title = input("Give a title: ")
-
-    youtubeDownloader = YouTube(link, on_progress_callback = progress_function)
+    video_downloader = YouTube(link, on_progress_callback = progress_function)
 
     print("Download in progress")
 
     output_path = str(Path.home() / "Downloads")
     filename = f"{title}.mp4"
-    youtubeDownloader.streams.filter(progressive=True, file_extension="mp4").get_highest_resolution().download(output_path=output_path, filename=filename)
+    video_downloader.streams.filter(progressive=True, file_extension="mp4").get_highest_resolution().download(output_path=output_path, filename=filename)
 
-    print("Video Downloaded", link)
+    print("Video downloaded", link)
 
 
 def progress_function(chunk, file_handle, bytes_remaining):
